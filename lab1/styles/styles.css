@@ -49,11 +49,12 @@ html,h1,h2,h3,h4,h5,h6,a{
 }
 .description{
     position: absolute;
-    top: 30%;
+    top: 25%;
     margin: auto;
     padding: 2em;
 
 }
+
 .description h1{
 	color:rgb(0, 116, 249) ;
 }
@@ -66,17 +67,37 @@ html,h1,h2,h3,h4,h5,h6,a{
 .description button{
 	border:1px  solid rgb(0, 116, 249);
 	background:rgb(0, 116, 249);
-	color:#fff;
+    color:#fff;
+    margin-left: 4%;
+
 }
+
 .about{
 	margin: 4em 0;
 	padding: 1em;
 	position: relative;
 }
+
 .about h1{
-	color:#F97300;
-	margin: 2em;
+	color:rgb(0, 116, 249);
+    margin: 1%;
+    display:flex;
+    justify-content: center;
 }
+.para{
+    margin-left: 1%;
+    margin-right: 5%;
+}
+#about {
+    position: relative;
+    display: flex;
+}
+.side {
+    position: relative   ;
+    width: 450%;
+    background-color: #fff;
+}
+/*
 .about img{
 	height: 100%;
     width: 100%;
@@ -98,15 +119,19 @@ html,h1,h2,h3,h4,h5,h6,a{
 .about .desc p{
 	line-height:2;
 	color:#888;
-}
+} */
 .photo{
-    max-width: 50%;
+    max-width: 20%;
     border-radius: 50%;
-    flex-direction: left;
-    align: left;
+    margin-top: 3%;
+    margin-bottom: 3%;
 }
-.hello_text{
-    flex: right;
+
+.par_with_photo{
+display: flex;
+}
+#par_next_to_photo{
+    margin: 4%;
 }
 /* 
 .portfolio{
