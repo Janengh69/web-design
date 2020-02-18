@@ -54,7 +54,9 @@ html,h1,h2,h3,h4,h5,h6,a{
     padding: 2em;
 
 }
-
+/* #about_page{
+	position: relative;
+} */
 .description h1{
 	color:rgb(0, 116, 249) ;
 }
@@ -86,17 +88,45 @@ html,h1,h2,h3,h4,h5,h6,a{
 }
 .para{
     margin-left: 1%;
-    margin-right: 5%;
+	margin-right: 5%;
+	display: flex;
+	flex-flow: column;
 }
 #about {
     position: relative;
     display: flex;
 }
 .side {
-    position: relative   ;
-    width: 450%;
-    background-color: #fff;
+    position: relative;
+    width: 40%;
+	background-color: #fff;
+	margin-top: 15%;
+	height: auto;
 }
+.about_main{
+	background-color: #e9ecef;
+	padding-top: 2%;
+	padding-bottom: 2%;
+}
+
+.b{
+	justify-content: center;
+}
+h4{
+	text-align: center;
+}
+
+h5{
+	text-align: left;
+	margin-top: 5%;
+	margin-bottom: 3%;
+}
+
+#nobel, #relatives{
+	margin-top: 4%;
+	padding-left: 0;
+}
+
 /*
 .about img{
 	height: 100%;
