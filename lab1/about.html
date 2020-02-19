@@ -5,14 +5,20 @@
         
       <link rel="stylesheet" type="text/css" href="styles/bootstrap.min.css">
       <link rel="stylesheet" type="text/css" href="styles/styles.css">
-
+        <script type="text/javascript" src="js/jquery-3.4.1.min.js" ></script>
+        <script>
+          jQuery(document).ready(function($){
+              $("#header").load("header.html");
+              $("#footer").load("footer.html");
+          });
+      </script>
      </head>
      <body>
+       <div id=header> </div>
         
 <div >
     <h1 class="jumbotron text-center"> Facts about myself </h1>  
-    <!-- <div class="container p-3 my-3 bg-light text-lightblue  "> --> 
-        <div class="container" id="about" >
+         <div class="container" id="about" >
           <div class="para">
             <div>
               <h5>If you are here u probably know a lot about me, but chances that you will know some new facts about me</h5>
