@@ -3,37 +3,18 @@
 <head>
 	<title>Towards science</title>
       <link rel="stylesheet" type="text/css" href="styles/bootstrap.min.css">
-      <link rel="stylesheet" type="text/css" href="styles/styles.css">
-
+	  <link rel="stylesheet" type="text/css" href="styles/styles.css">
+	  <script type="text/javascript" src="js/jquery-3.4.1.min.js" ></script>
+        <script>
+          jQuery(document).ready(function($){
+              $("#top-header").load("header.html");
+              $("#footer").load("footer.html");
+          });
+      </script>
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg fixed-top ">
-	  <a class="navbar-brand" href="#">Towards science </a>
-	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-	    <span class="navbar-toggler-icon"></span>
-	  </button>
-
-	  <div class="collapse navbar-collapse " id="navbarSupportedContent">
-	    <ul class="navbar-nav mr-4">
-	      
-	      <li class="nav-item">
-	        <a class="nav-link" data-value="about" href="about.html">About</a>
-	      </li>
-
-	      <li class="nav-item">
-	        <a class="nav-link " data-value="blog" href="#">Blog</a>
-	      </li>
-	      <li class="nav-item">
-	        <a class="nav-link " data-value="contact" href="#">Contact</a>
-        </li>
-        <li class="nav-item">
-	        <a class="nav-link " data-value="log_in" href="#">Log in</a>
-	      </li>
-	    </ul>
-	    
-	  </div>
-</nav>
-<!-- header -->
+	<div id="top-header"></div>
+</div>
 <header class="header ">
   <div class="overlay"></div>
    <div class="container">
@@ -49,15 +30,14 @@
         </p>
          
       </div>
-      <button class="btn btn-outline-secondary btn-lg" href="#about_main_page">Let's get started</button>   
+      <button class="btn btn-outline-primary btn-lg" onClick='location.href="#about_main"' href="#about_main_page">Let's get started</button>   
 
   	</h1>
   </div>
    </div>
   
 </header>
-<div class="about_main">
-	<br><br>
+<div class="about_main", id="about_main">
 	<br><br>
 	<br><br>
 	<br><br>
@@ -84,6 +64,9 @@
 				of substandard programmers use it, to the point where it's much much 
 				easier to generate total and utter crap with it.</p>
 		  </div>
+		</div>
+		<div class="row centered" id="learn_more"> 
+			<button class="btn btn-outline-primary btn-lg"  onClick='location.href="about.html"'>Learn more</button>   
 		</div>
 		<br><br>
 		<br><br>
@@ -112,7 +95,7 @@
 						</p>
 					</div>
 					<div class="card-footer">
-						<a href="" class="card-link">Read more</a>
+						<a href="https://www.kernel.org/" class="card-link">Read more</a>
 					</div>
 				</div>
 			</div>
@@ -131,7 +114,7 @@
 						</p>
 					</div>
 					<div class="card-footer">
-						<a href="" class="card-link">Read more</a>
+						<a href="https://bitbucket.org/" class="card-link">Read more</a>
 					</div>
 				</div>
 			</div>
@@ -149,7 +132,7 @@
 						</p>
 					</div>
 					<div class="card-footer">
-						<a href="" class="card-link">Read more</a>
+						<a href="https://habr.com/ru/post/145964/" class="card-link">Read more</a>
 					</div>
 				</div>
 			</div>
@@ -159,7 +142,6 @@
 	<br><br>
 </div>
 
-<!-- Contact form -->
 <div class="contact-form" id="contact">
 	<div class="container">
 		<form>
@@ -175,7 +157,7 @@
 				   	 <input type="email" class="form-control form-control-lg" placeholder="YourEmail@email.com" name="email">
 				   </div>
 				   <div class="form-group">
-				   	 <textarea class="form-control form-control-lg">
+				   	 <textarea class="form-control form-control-lg" placeholder="Any remarks?">
 				   	 	
 				   	 </textarea>
 				   </div>
@@ -185,6 +167,7 @@
 		</form>
 	</div>
 </div>
+<div id="footer"></div>
 <!-- add Javasscript file from js file -->
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
