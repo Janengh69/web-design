@@ -2,4 +2,4 @@
 
 ### Made be Karyna Dorosh KV-72
 
-![view](demo.mp4)
+![preview](demo.gif)
