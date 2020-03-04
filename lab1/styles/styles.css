@@ -172,7 +172,7 @@ display: flex;
 	color:rgb(0, 116, 249);
 	margin: 2em;	
 }
-#tux{
+#tux, #git, #nvidia{
 	margin-top: 5%;
 	max-width: 65%;
 	height: auto;
