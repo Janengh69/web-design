@@ -61,26 +61,8 @@ html,h1,h2,h3,h4,h5,h6,a{
 	width: 50%;
 	line-height: 1.5;
 }
-.description button{
-	border:1px  solid rgb(0, 116, 249);
-	background:rgb(0, 116, 249);
-    color:#fff;
-    margin-left: 4%;
 
-}
 
-.about{
-	margin: 4em 0;
-	padding: 1em;
-	position: relative;
-}
-
-.about h1{
-	color:rgb(0, 116, 249);
-    margin: 1%;
-    display:flex;
-    justify-content: center;
-}
 .para{
     margin-left: 1%;
 	margin-right: 5%;
@@ -88,7 +70,6 @@ html,h1,h2,h3,h4,h5,h6,a{
 	flex-flow: column;
 }
 #about {
-    position: relative;
     display: flex;
 }
 .side {
