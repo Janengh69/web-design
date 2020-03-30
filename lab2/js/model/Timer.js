@@ -1,5 +1,6 @@
 export default class Timer{
     constructor(){
+        this.title = '';
         this.onChangeCallback = null;
         this.currentTime = 0;
         this.timer = document.querySelector('#timer');
@@ -10,6 +11,7 @@ export default class Timer{
         this.startTime = 0;
         this.endTime = 0;
         this.countStart = 0;
+        this.list = [];
     }
     setOnChangeCallback(){
         this.onChangeCallback = onChangeCallback;
@@ -18,18 +20,17 @@ export default class Timer{
         // setUpdatedTimers();
         // displaySessionLog(type);
         $("#title_form")[0].reset();
-
         clearInterval(this.clockTimer);
         this.isClockStopped = true;
         this.isClockRunning = false;
         this.currentTime = 0;
         this.displayCurrentTimeLeftInSession();
         this.isClockStopped = true;
-        // type = "Work";
-        // timeSpentInCurrentSession = 0;
-      };
+        this.endTime = new Date();
+        //this.writeToJson('localStorage');
+        this.list.push({ title : this.title, time : this.clockTimer, startTime: this.startTime, endTime: this.endTime} );
+    };
     toggleClock(reset){
-       // togglePlayPauseIcon(reset);
        if (reset) {
           this.stopClock();
        } else {
@@ -42,14 +43,11 @@ export default class Timer{
                 console.log("pause");
                 // pause
                 clearInterval(this.clockTimer);
-                // update icon to the play one
-                // set the value of the button to start or pause
                 this.isClockRunning = false;
                 this.displayCurrentTimeLeftInSession();
 
             } else {
-            // start
-                console.log("start");
+                // console.log("start");
                 this.clockTimer = setInterval(() => {
                 //stepDown();
                     this.currentTime++;
@@ -66,7 +64,6 @@ export default class Timer{
         const seconds = secondsLeft % 60;
         const minutes = parseInt(secondsLeft / 60) % 60;
         let hours = parseInt(secondsLeft / 3600);
-        // add leading zeroes if it's less than 10
         function addLeadingZeroes(time) {
           return time < 10 ? `0${time}` : time
         }
@@ -77,12 +74,23 @@ export default class Timer{
     startClock = () =>{
         this.countStart++;
         if(this.countStart ==  1){
-            this.isSave = $('#save:checked').val();
-            console.log(this.isSave);
-            this.startClock = new Date();
-            console.log(this.startClock);
+            this.isSave = $('#save:checked').prop('checked');
+            this.startTime = new Date();
+            this.saveTitle();
         }
-        console.log("startClock");
         this.toggleClock();
+    }
+    saveTitle() {
+        this.title = document.getElementById("title").value;
+    }
+    writeToJson = path =>{
+        //var obj = { title : this.title, time : this.clockTimer, startTime: this.startTime, endTime: this.endTime}         
+        localStorage.setItem(path, JSON.stringify(this.list));
+        
+      // console.log(data);
+    }
+    readFromJson = path =>{
+        var obj = JSON.parse(localStorage.getItem(path));
+        console.log(obj);
     }
 }
