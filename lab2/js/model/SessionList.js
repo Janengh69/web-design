@@ -7,7 +7,6 @@ export default class SessionList{
     }
     readFromJson = path =>{
         this.list = JSON.parse(localStorage.getItem(path));
-        //console.log(this.list);
     }
     delete(itemId){
             const itemIndex = this.list.findIndex( (item) => list.id === itemId); 

@@ -3,6 +3,7 @@ import SessionList from "../model/SessionList.js";
 import SessionListView from "../view/SessionListView.js";
 export default class Controller{
     constructor(){
+        this.myWorker;
         var timer = new Timer();
         var sesList = new SessionList();
         this.sesListView;
@@ -10,8 +11,6 @@ export default class Controller{
         document.getElementById("stop").addEventListener("click", () => timer.toggleClock(true));
         document.getElementById("pause").addEventListener("click", () => timer.toggleClock());
         document.getElementById("start").addEventListener("click", () => timer.startClock());
-        //document.getElementById("generate").addEventListener("click", () => timer.writeToJson(this.path));
-        //document.getElementById("show").addEventListener("click", () => sesList.readFromJson(this.path));
         document.getElementById("show").addEventListener("click", () => this.updateView(sesList, timer));
 
         this.path = 'localStorage';
@@ -23,4 +22,5 @@ export default class Controller{
 
         document.querySelector('#to-do').innerHTML = this.sesListView.ListToHtml();
     }
+    
 }
