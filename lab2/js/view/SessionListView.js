@@ -12,7 +12,6 @@ export default class SessionListView{
             console.log(this.sesionList.list);
             this.myWorker.postMessage(this.sesionList.list);    
             this.myWorker.onmessage = function(e){
-                console.log(e.data);
                 document.querySelector('#to-do').innerHTML = e.data;
             };
        }

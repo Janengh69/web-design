@@ -20,7 +20,7 @@ onmessage = function(e){
                     </td>
                 </tr>`;
         }else{
-            retutn `
+            return `
             <tr>
                 <td>
                     ${item.title}
@@ -34,6 +34,5 @@ onmessage = function(e){
             </tr>`;
         }
     }).join("");
-    console.log(itemsHtml);
     postMessage( `<table border="1"><tr><th>Title</th><th>ID</th><th>Time</th><th>StartTime</th><th>EndTime</th></tr>${itemsHtml}</table>`);
 }
