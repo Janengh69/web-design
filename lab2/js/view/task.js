@@ -1,36 +1,39 @@
 onmessage = function(e){
-    console.log(e.data.title);
-    if(e.data.isSave){
-        postMessage( `
+    const itemsHtml = e.data.map( (item) => {
+        if(item.isSave){
+            return  `
+                <tr>
+                    <td>
+                        ${item.title}
+                    </td>
+                    <td>
+                        ${item.id}                  
+                    </td>
+                    <td>
+                        ${item.time}
+                    </td>
+                    <td>
+                        ${item.startTime}
+                    </td>
+                    <td>
+                        ${item.endTime}
+                    </td>
+                </tr>`;
+        }else{
+            retutn `
             <tr>
                 <td>
-                    ${e.data.title}
+                    ${item.title}
                 </td>
                 <td>
-                    ${e.data.id}                  
+                    ${item.id}                  
                 </td>
                 <td>
-                    ${e.data.time}
+                    ${item.time}
                 </td>
-                <td>
-                    ${e.data.startTime}
-                </td>
-                <td>
-                    ${e.data.endTime}
-                </td>
-            </tr>`);
-    }else{
-        postMessage( `
-        <tr>
-            <td>
-                ${e.data.title}
-            </td>
-            <td>
-                ${e.data.id}                  
-            </td>
-            <td>
-                ${e.data.time}
-            </td>
-        </tr>`);
-     }
+            </tr>`;
+        }
+    }).join("");
+    console.log(itemsHtml);
+    postMessage( `<table border="1"><tr><th>Title</th><th>ID</th><th>Time</th><th>StartTime</th><th>EndTime</th></tr>${itemsHtml}</table>`);
 }

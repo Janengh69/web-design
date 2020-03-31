@@ -6,23 +6,15 @@ export default class SessionListView{
         this.sesionList = sesList;
         this.data = "";
     }
-    ListToHtml() {
-        const itemsHtml = this.sesionList.list.map( (item) => {
-            return this.callWebWorker(item);
-        }).join("");
-        return `<table border="1"><tr><th>Title</th><th>ID</th><th>Time</th><th>StartTime</th><th>EndTime</th></tr>${itemsHtml}</table>`;
-    }
-    callWebWorker(item){
-        var data;
+    callWebWorker(list){
         if(window.Worker){
             this.myWorker = new Worker("js/view/task.js");
-            this.myWorker.postMessage(item);    
+            console.log(this.sesionList.list);
+            this.myWorker.postMessage(this.sesionList.list);    
             this.myWorker.onmessage = function(e){
                 console.log(e.data);
+                document.querySelector('#to-do').innerHTML = e.data;
             };
        }
-       console.log(data);
-       return data;
-
     }
 }

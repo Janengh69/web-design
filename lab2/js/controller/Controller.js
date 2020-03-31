@@ -19,8 +19,7 @@ export default class Controller{
         timer.writeToJson(this.path);
         sesList.readFromJson(this.path);
         this.sesListView = new SessionListView(sesList);
-
-        document.querySelector('#to-do').innerHTML = this.sesListView.ListToHtml();
+        this.sesListView.callWebWorker(sesList);
     }
     
 }
