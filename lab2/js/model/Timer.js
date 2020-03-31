@@ -1,11 +1,14 @@
 export default class Timer{
     constructor(){
         this.title = '';
-        this.onChangeCallback = null;
         this.currentTime = 0;
         this.timer = document.querySelector('#timer');
         this.isClockRunning = false;
         this.isClockStopped = false;
+        this.startButton  = document.querySelector('#start');
+        this.stopButton  = document.querySelector('#stop');
+        this.pauseButton  = document.querySelector('#pause');
+        this.setButtons(true);
         this.clockTimer;
         this.isSave = false;
         this.startTime = 0;
@@ -13,49 +16,49 @@ export default class Timer{
         this.countStart = 0;
         this.list = [];
     }
-    setOnChangeCallback(){
-        this.onChangeCallback = onChangeCallback;
+    setButtons(flag){
+        this.stopButton.disabled = flag;
+        this.pauseButton.disabled = flag;
     }
     stopClock = () => {
-        // setUpdatedTimers();
-        // displaySessionLog(type);
         $("#title_form")[0].reset();
         clearInterval(this.clockTimer);
         this.isClockStopped = true;
         this.isClockRunning = false;
+        this.startButton.disabled = this.isClockRunning;
+        this.setButtons(true);
         this.currentTime = 0;
         this.displayCurrentTimeLeftInSession();
         this.isClockStopped = true;
-        this.endTime = new Date();
-        //this.writeToJson('localStorage');
-        this.list.push({ title : this.title, time : this.clockTimer, startTime: this.startTime, endTime: this.endTime} );
+        this.endTime = new Date(Date.now());
+        this.countStart = 0;
+        var sessionTime = this.endTime.getTime() - this.startTime.getTime();
+        this.list.push({ id: this.list.length, title : this.title, isSave: this.isSave, time : sessionTime, startTime: this.startTime, endTime: this.endTime} );
     };
     toggleClock(reset){
        if (reset) {
           this.stopClock();
        } else {
             if (this.isClockStopped) {
-            //setUpdatedTimers();
             this.isClockStopped = false;
             }
         
             if (this.isClockRunning === true) {
-                console.log("pause");
-                // pause
                 clearInterval(this.clockTimer);
                 this.isClockRunning = false;
+                this.startButton.disabled = this.isClockRunning;
+
                 this.displayCurrentTimeLeftInSession();
 
             } else {
-                // console.log("start");
                 this.clockTimer = setInterval(() => {
-                //stepDown();
                     this.currentTime++;
                     this.displayCurrentTimeLeftInSession();
                 }, 1000);
                 this.isClockRunning = true;
+                this.startButton.disabled = this.isClockRunning;
+                this.setButtons(false);
             }
-            //    showStopIcon();
         }
     }
     displayCurrentTimeLeftInSession = () => {
@@ -75,7 +78,7 @@ export default class Timer{
         this.countStart++;
         if(this.countStart ==  1){
             this.isSave = $('#save:checked').prop('checked');
-            this.startTime = new Date();
+            this.startTime = new Date(Date.now());
             this.saveTitle();
         }
         this.toggleClock();
@@ -83,14 +86,7 @@ export default class Timer{
     saveTitle() {
         this.title = document.getElementById("title").value;
     }
-    writeToJson = path =>{
-        //var obj = { title : this.title, time : this.clockTimer, startTime: this.startTime, endTime: this.endTime}         
+    writeToJson = path =>{     
         localStorage.setItem(path, JSON.stringify(this.list));
-        
-      // console.log(data);
-    }
-    readFromJson = path =>{
-        var obj = JSON.parse(localStorage.getItem(path));
-        console.log(obj);
     }
 }
