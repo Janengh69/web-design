@@ -2,13 +2,14 @@ onmessage = function(e){
     const itemsHtml = e.data.map( (item) => {
         if(item.isSave){
             return  `
-                <tr>
+                <tr scope="row">
+                    <td>
+                         ${item.id}                  
+                    </td>
                     <td>
                         ${item.title}
                     </td>
-                    <td>
-                        ${item.id}                  
-                    </td>
+
                     <td>
                         ${item.time}
                     </td>
@@ -21,7 +22,7 @@ onmessage = function(e){
                 </tr>`;
         }else{
             return `
-            <tr>
+            <tr scope="row">
                 <td>
                     ${item.title}
                 </td>
@@ -31,8 +32,10 @@ onmessage = function(e){
                 <td>
                     ${item.time}
                 </td>
+                <td></td>
+                <td></td>
             </tr>`;
         }
     }).join("");
-    postMessage( `<table border="1"><tr><th>Title</th><th>ID</th><th>Time</th><th>StartTime</th><th>EndTime</th></tr>${itemsHtml}</table>`);
+    postMessage( `<table border="1" class="table table-striped table-dark table-bordered "><tr><th scope="col">ID</th><th scope="col">Title</th><th scope="col">Time</th><th scope="col">StartTime</th><th scope="col">EndTime</th></tr>${itemsHtml}</table>`);
 }

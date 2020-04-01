@@ -3,47 +3,78 @@
 <head>
     <meta charset="utf-8">
     <title>To Do App in Vanilla JS</title>
-</head>
-<body>
     <script type="module" src="js/main.js"></script>
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
     </script>
-    <h1>Timer</h1>
+</head>
+<body id="page">
+    
+ 
     <div id="container">
+      <br></br>
+      <h1>Timer</h1>
         <div id="clock">
-          <div id="timer"></div>
+          <div>
+            <h1 id="timer">00:00 </h1>
+          </div>
           <div id="input">
             <form id="title_form">
-            <input type="text",placeholder="Type name of activity", id="title">
+            <!-- <input type="text",placeholder="Type name of activity", id="title"> -->
             <!-- <button id="submit">Submit</button> -->
+              <div class="input-group input-group-lg">
+                <br>
+                <input id="title" type="text" class="form-control" aria-describedby="inputGroup-sizing-sm", placeholder="Name of the activity">
+              </div>
           </form>
           </div>
-          <br></br>
+          <br>
+          <div id="save_time">
+            <div class="input-group mb-3">
+                <div class="input-group-text">
+                  <input id ="save" type="checkbox" aria-label="Checkbox for following text input">
+                  <label for="save">Save the time of begin and end</label>  
+                </div>
+            </div>
+          </div>
+          <br>
           <div id="clock-actions">
 
-            <button id="start">Start</button>
-            <button id="pause">Pause</button>
-            <button id="stop">Stop</button>
+            <button id="start" class="btn btn-primary">Start</button>
+            <button id="pause" class="btn btn-primary">Pause</button>
+            <button id="stop" class="btn btn-primary">Stop</button>
           </div>
           <br></br>
 
-          <div id="save_time">
-            <input type="checkbox" id="save" name="save"
-                   checked>
-            <label for="save">Save the time of begin and end</label>
-          </div>
-          <br></br>
-
+         
+        <div>
+          <button id="show" class="btn btn-primary btn-lg btn-block">Show all table</button> 
+      
+          <br><br>
           <div>
-            <button id="show">Show</button>
+            <form id="choose_form">
+              <input id = "choose", type="text" class="form-control", placeholder="input days ex 01/11-02/11">
+              <button id="start" class="btn btn-outline-secondary">Show sesions</button>
 
+            </form>
           </div>
-          <br></br>
+          <br>
+        </div>
+          <div id="show-actions", class="btn-group" >
 
-          <div id="to-do">
-
+            <button id="day" class="btn btn-primary">Day</button>
+            <button id="week" class="btn btn-primary">Week</button>
+            <button id="month" class="btn btn-primary">Month</button>
           </div>
+    
+        
+        <h3>Your Sessions </h3> 
+          <div id="info">
+            <div id="to-do">
+            </div>
         </div>
       </div>
     
 </body>
+</html>

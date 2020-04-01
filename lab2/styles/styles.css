@@ -1,0 +1,29 @@
+ #page {
+    background-color:rgb(190, 221, 241);
+  } 
+  #container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+  
+#clock {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+  } 
+  .hidden {
+    display: none;
+  }
+#choose_form{
+    display: flex;
+    flex-direction: row;
+}
+#show-actions{
+    align-items: center;
+    justify-content: center;
+}
