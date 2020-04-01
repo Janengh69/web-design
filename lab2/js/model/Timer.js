@@ -16,6 +16,7 @@ export default class Timer{
         this.countStart = 0;
         this.list = [];
         this.time = 0;
+        this.sumTime = 0;
     }
     setButtons(flag){
         this.stopButton.disabled = flag;
@@ -29,12 +30,14 @@ export default class Timer{
         this.startButton.disabled = this.isClockRunning;
         this.setButtons(true);
         this.currentTime = 0;
-        this.displayCurrentTimeLeftInSession();
+        this.timer.innerText = this.displayCurrentTimeLeftInSession(this.currentTime);
         this.isClockStopped = true;
         this.endTime = new Date(Date.now());
         this.countStart = 0;
         this.time = this.endTime.getTime() - this.startTime.getTime();
-        this.displayCurrentTimeLeftInSession(false);
+        this.sumTime += this.time;
+        this.time = this.displayCurrentTimeLeftInSession(parseInt(this.time/1000));
+
         this.list.push({ id: this.list.length, title : this.title, isSave: this.isSave, time : this.time , startTime: this.startTime.toLocaleString(), endTime: this.endTime.toLocaleString()} );
     };
     toggleClock(reset){
@@ -50,12 +53,12 @@ export default class Timer{
                 this.isClockRunning = false;
                 this.startButton.disabled = this.isClockRunning;
 
-                this.displayCurrentTimeLeftInSession();
+                this.timer.innerText =this.displayCurrentTimeLeftInSession(this.currentTime);
 
             } else {
                 this.clockTimer = setInterval(() => {
                     this.currentTime++;
-                    this.displayCurrentTimeLeftInSession();
+                    this.timer.innerText = this.displayCurrentTimeLeftInSession(this.currentTime);
                 }, 1000);
                 this.isClockRunning = true;
                 this.startButton.disabled = this.isClockRunning;
@@ -63,18 +66,11 @@ export default class Timer{
             }
         }
     }
-    displayCurrentTimeLeftInSession = (isDisplay=true) => {
-        let secondsLeft;
-        if(isDisplay){
-            secondsLeft= this.currentTime;
-        }
-        else{
-            secondsLeft = parseInt(this.time/1000);
-        }
+    displayCurrentTimeLeftInSession = (currTime) => {
+        console.log(currTime);
+        let secondsLeft = currTime;
         let result = '';
-        console.log(secondsLeft);
         const seconds = secondsLeft % 60;
-        console.log(seconds);
         const minutes = parseInt(secondsLeft / 60) % 60;
         let hours = parseInt(secondsLeft / 3600);
         function addLeadingZeroes(time) {
@@ -82,12 +78,8 @@ export default class Timer{
         }
         if (hours > 0) result += `${hours}:`
         result += `${addLeadingZeroes(minutes)}:${addLeadingZeroes(seconds)}`
-        if(isDisplay){
-            this.timer.innerText = result.toString();
-        }
-        else{
-            this.time = result.toString();
-        }
+
+        return result.toString();
     }
     startClock = () =>{
         this.countStart++;
@@ -104,24 +96,4 @@ export default class Timer{
     writeToJson = path =>{     
         localStorage.setItem(path, JSON.stringify(this.list));
     }
-    // timeConversion(millisec) {
-
-    //     var seconds = (millisec / 1000).toFixed(1);
-
-    //     var minutes = (millisec / (1000 * 60)).toFixed(1);
-
-    //     var hours = (millisec / (1000 * 60 * 60)).toFixed(1);
-
-    //     var days = (millisec / (1000 * 60 * 60 * 24)).toFixed(1);
-
-    //     if (seconds < 60) {
-    //         return seconds + " Sec";
-    //     } else if (minutes < 60) {
-    //         return minutes + " Min";
-    //     } else if (hours < 24) {
-    //         return hours + " Hrs";
-    //     } else {
-    //         return days + " Days"
-    //     }
-    // }
 }

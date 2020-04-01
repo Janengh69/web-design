@@ -45,30 +45,31 @@
             <button id="pause" class="btn btn-primary">Pause</button>
             <button id="stop" class="btn btn-primary">Stop</button>
           </div>
-          <br></br>
-
-         
-        <div>
-          <button id="show" class="btn btn-primary btn-lg btn-block">Show all table</button> 
-      
-          <br><br>
-          <div>
-            <form id="choose_form">
-              <input id = "choose", type="text" class="form-control", placeholder="input days ex 01/11-02/11">
-              <button id="start" class="btn btn-outline-secondary">Show sesions</button>
-
-            </form>
-          </div>
           <br>
-        </div>
+          <div>
+            <h4>Enter date of choose another option</h4>
+          </div>
+          <div class="input-group mb-3" style="display:flex; flex-direction: row;">
+            <input id ="choose", type="text" class="form-control", placeholder="input days ex 01/11-02/11">
+
+            <div class="input-group-prepend">
+              <button id="show-ses" class="btn btn-outline-secondary" type="button" id="button-addon1">Show session</button>
+            </div>
+          </div>
+          
           <div id="show-actions", class="btn-group" >
 
             <button id="day" class="btn btn-primary">Day</button>
             <button id="week" class="btn btn-primary">Week</button>
             <button id="month" class="btn btn-primary">Month</button>
+            <button id="show-all" class="btn btn-primary">Show all the session</button> 
+
           </div>
-    
-        
+    <div id="row">
+      <br>
+      <button id="sum", type="button" class="btn btn-primary btn-lg">Get sum time</button>
+      <h2 id="sumText"> </h2>
+    </div>
         <h3>Your Sessions </h3> 
           <div id="info">
             <div id="to-do">

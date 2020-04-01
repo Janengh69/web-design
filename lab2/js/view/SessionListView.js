@@ -8,12 +8,16 @@ export default class SessionListView{
     }
     callWebWorker(list){
         if(window.Worker){
-            this.myWorker = new Worker("js/view/task.js");
-            console.log(this.sesionList.list);
-            this.myWorker.postMessage(this.sesionList.list);    
+            this.myWorker = new Worker("js/view/taskForWebWorker.js");
+            // console.log(list);
+            this.myWorker.postMessage(list);    
             this.myWorker.onmessage = function(e){
                 document.querySelector('#to-do').innerHTML = e.data;
             };
        }
+    }
+    showSum(sum){
+        document.querySelector('#sumText').innerHTML = sum;
+
     }
 }
