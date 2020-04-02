@@ -21,25 +21,28 @@ export default class Timer{
     setButtons(flag){
         this.stopButton.disabled = flag;
         this.pauseButton.disabled = flag;
+        this.startButton.disabled = this.isClockRunning;
+        this.currentTime = 0;
+        this.countStart = 0;
+
     }
     stopClock = () => {
         $("#title_form")[0].reset();
         clearInterval(this.clockTimer);
         this.isClockStopped = true;
         this.isClockRunning = false;
-        this.startButton.disabled = this.isClockRunning;
         this.setButtons(true);
-        this.currentTime = 0;
+        this.convertTime();
         this.timer.innerText = this.displayCurrentTimeLeftInSession(this.currentTime);
-        this.isClockStopped = true;
+       
+        this.list.push({ id: this.list.length, title : this.title, isSave: this.isSave, time : this.time , startTime: this.startTime.toLocaleString(), endTime: this.endTime.toLocaleString()} );
+    };
+    convertTime(){
         this.endTime = new Date(Date.now());
-        this.countStart = 0;
         this.time = this.endTime.getTime() - this.startTime.getTime();
         this.sumTime += this.time;
         this.time = this.displayCurrentTimeLeftInSession(parseInt(this.time/1000));
-
-        this.list.push({ id: this.list.length, title : this.title, isSave: this.isSave, time : this.time , startTime: this.startTime.toLocaleString(), endTime: this.endTime.toLocaleString()} );
-    };
+    }
     toggleClock(reset){
        if (reset) {
           this.stopClock();
@@ -47,24 +50,27 @@ export default class Timer{
             if (this.isClockStopped) {
             this.isClockStopped = false;
             }
-        
             if (this.isClockRunning === true) {
-                clearInterval(this.clockTimer);
-                this.isClockRunning = false;
-                this.startButton.disabled = this.isClockRunning;
-
-                this.timer.innerText =this.displayCurrentTimeLeftInSession(this.currentTime);
-
+                this.startPause();
             } else {
-                this.clockTimer = setInterval(() => {
-                    this.currentTime++;
-                    this.timer.innerText = this.displayCurrentTimeLeftInSession(this.currentTime);
-                }, 1000);
-                this.isClockRunning = true;
-                this.startButton.disabled = this.isClockRunning;
-                this.setButtons(false);
+               this.Start();
             }
         }
+    }
+    startPause(){
+        clearInterval(this.clockTimer);
+        this.isClockRunning = false;
+        this.startButton.disabled = this.isClockRunning;
+        this.timer.innerText =this.displayCurrentTimeLeftInSession(this.currentTime);
+    }
+    Start(){
+        this.clockTimer = setInterval(() => {
+            this.currentTime++;
+            this.timer.innerText = this.displayCurrentTimeLeftInSession(this.currentTime);
+        }, 1000);
+        this.isClockRunning = true;
+        this.startButton.disabled = this.isClockRunning;
+        this.setButtons(false);
     }
     displayCurrentTimeLeftInSession = (currTime) => {
         let secondsLeft = currTime;

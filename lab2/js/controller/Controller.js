@@ -78,7 +78,7 @@ export default class Controller{
     }
     parseDate(str) {
         var mdy = str.split('/');
-        return new Date(new Date().getFullYear(), mdy[1]-1, mdy[0] );
+        return new Date(new Date().getFullYear(), mdy[1]-1, mdy[0]-1);
     }
     LastDays (days, date = new Date()) {
         var result = [];
