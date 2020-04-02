@@ -32,16 +32,16 @@ export default class Timer{
         this.isClockStopped = true;
         this.isClockRunning = false;
         this.setButtons(true);
-        this.convertTime();
+        let displayTime = this.convertTime();
         this.timer.innerText = this.displayCurrentTimeLeftInSession(this.currentTime);
        
-        this.list.push({ id: this.list.length, title : this.title, isSave: this.isSave, time : this.time , startTime: this.startTime.toLocaleString(), endTime: this.endTime.toLocaleString()} );
+        this.list.push({ id: this.list.length, title : this.title, isSave: this.isSave, time : displayTime, startTime: this.startTime.toLocaleString(), endTime: this.endTime.toLocaleString(), timeInMsec: this.time} );
     };
     convertTime(){
         this.endTime = new Date(Date.now());
         this.time = this.endTime.getTime() - this.startTime.getTime();
         this.sumTime += this.time;
-        this.time = this.displayCurrentTimeLeftInSession(parseInt(this.time/1000));
+        return this.displayCurrentTimeLeftInSession(parseInt(this.time/1000));
     }
     toggleClock(reset){
        if (reset) {
