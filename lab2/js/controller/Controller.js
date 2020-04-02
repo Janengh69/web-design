@@ -24,6 +24,10 @@ export default class Controller{
         timer.writeToJson(this.path);
         sesList.readFromJson(this.path);
         let array_of_days = [];
+        //THIS EXAMPLES ADDED TO SHOW THE WORK OF THE WEEK AND MONTH BUTTONS
+        sesList.list.push({ id: 10, title : "test", isSave: true, time : 0, startTime: new Date(2020, 2, 30).toLocaleString(), endTime:new Date(2020, 2, 31).toLocaleString()} );
+        sesList.list.push({ id: 10, title : "test2", isSave: true, time : 0, startTime: new Date(2020, 2, 10).toLocaleString(), endTime:new Date(2020, 2, 28).toLocaleString()} );
+
         if(button == -1){
             array_of_days = this.showSessions(sesList, timer);
             sesList.list = this.getSessions(sesList.list, array_of_days);
@@ -33,7 +37,6 @@ export default class Controller{
             sesList.list = this.getSessions(sesList.list, array_of_days);
 
         }
-       // sesList.list.push({ id: 10, title : "test", isSave: true, time : 0, startTime: new Date(2020, 3, 30), endTime:new Date(2020, 2, 28)} );
         this.sesListView = new SessionListView(sesList);
         this.sesListView.callWebWorker(sesList.list);
     }
@@ -41,7 +44,7 @@ export default class Controller{
         let result = [];
         let currDate = new Date();
         for(const elem in list){
-            for(const el in dates){
+            for(const el in dates){              
                 if( `${dates[el].month+1}/${dates[el].day}/${currDate.getFullYear()}`  == list[elem].startTime .split(",")[0]){
                     result.push(list[elem]);
                 }
@@ -79,9 +82,9 @@ export default class Controller{
     }
     LastDays (days, date = new Date()) {
         var result = [];
+        let temp = new Date(date);
         for (var i=0; i<days; i++) {
-            var d = date;
-
+            var d = new Date(date);
             d.setDate(d.getDate() - i);
             result.push({day : d.getDate(), month: d.getMonth()});
         }

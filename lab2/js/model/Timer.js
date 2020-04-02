@@ -67,7 +67,6 @@ export default class Timer{
         }
     }
     displayCurrentTimeLeftInSession = (currTime) => {
-        console.log(currTime);
         let secondsLeft = currTime;
         let result = '';
         const seconds = secondsLeft % 60;
