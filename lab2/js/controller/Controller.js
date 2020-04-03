@@ -39,8 +39,15 @@ export default class Controller{
         }
         else{
             for(const elem in sesList.list){
-                 array_of_days.push({day: new Date(sesList.list[elem].startTime).getDate(), month: new Date(sesList.list[elem].startTime).getMonth()});
+                let flag = false;
+                let temp = {day: new Date(sesList.list[elem].startTime).getDate(), month: new Date(sesList.list[elem].startTime).getMonth()};
+                array_of_days.push(temp);
             }
+            array_of_days = array_of_days.filter((obj, index, self) =>
+                index === self.findIndex((t) => (
+                    t.month === obj.month && t.day === obj.day
+                ))
+            )
         }
         this.sesListView = new SessionListView(sesList);
         this.sesListView.showHTML();
@@ -60,6 +67,7 @@ export default class Controller{
         return result;
     }
     getSum(sesList, timer){
+        
         
         timer.writeToJson(this.path);
         sesList.readFromJson(this.path);
@@ -100,11 +108,8 @@ export default class Controller{
     callWebWorker(sesList, array_of_days, sesListView){
         if(window.Worker){
             this.myWorker = new Worker("js/controller/taskForWebWorker.js");
-
             this.myWorker.postMessage([sesList, array_of_days]);    
             this.myWorker.onmessage = function(e){
-                // const unique = new Set(e.data);
-                // const arr = [...unique];
                 let arr = e.data;
                 arr.filter((item, index) => arr.indexOf(item) == index);
                 sesListView.timeToHTML(arr);

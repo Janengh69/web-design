@@ -24,9 +24,7 @@ onmessage = function(e){
             if (hours > 0) tempTime += `${hours}:`
             tempTime += `${addLeadingZeroes(minutes)}:${addLeadingZeroes(seconds)}`
             const obj = { date : temp, time: tempTime};
-            // if(result.indexOf(obj) == -1){
-                result.push(obj);
-            // }
+            result.push(obj);
         }
     }
     postMessage(result);
